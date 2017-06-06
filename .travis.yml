@@ -17,9 +17,13 @@ deploy:
   provider: releases
   api_key:
     secure: HqW+q911PYFMUgl6j4LqnnSO/pedTNv71gfNjpZCHuxKwlCNa4SIv1b58JcXGQ3irfY4ythfAX9fr0EMvzYSVDg0rOs8Zxkq3VWHaPn677P03XJzcgPV3jm4LYbJX95UyBRLidaXJrdVuvnEn0SjNF35wFYDh64nokPEvrfxZoORvm5DbhF25mjowSGUm4uWha9p5B9RTp/kv1I4lPMNGiDCb+L0WvkadfMz5nesa2AdTR/mli3aC/gn+an8rjN20vxUaPuyVFbvdUqPUQ+Iw5/bfAwa4BRBU61zEcXTE5T97+0I8ebi0sK9TfaTokjPX4WgLmbwnHlkEAjPH9wfdadYwY7wmFl2QnEw0ewiZet72UN+Zsaej8UvL0gg5rmB6vOOCenc43dzi/zEhYws1c+tQVYGTcDKkllTDy9DHGSgwwpwHeC9SK0BXlQc7Y5dwgbJLzchHpMp1QmF6lVgaI0xbA1nN38SrZ15yoJE3jIWux6mFH6ODDlSLe0baojbELXmcKZwWnIXtenOYsDoJq70S715ibSCQIZmGFsWKlJDzin8kIX7fnIcz43MX9qvbm1cDKIIaBMZmDdd57r6uiycE+eXjrDnCsu+Kxq2UwFa4igMlkjhAIxB5WFVFj6+AfIxZtmOtarizRFhwhs2dc+n+Hh7b5Nq32YG3clVYd0=
+  file_glob: true
   file:
-    - "${RELEASE_PKG_FILE}"
-    - "${RELEASE_DEB_FILE}"
-    - "${RELEASE_RPM_FILE}"
+    - "**/target/*.jar"
+    - "**/target/*.deb"
+    - "**/target/**/*.rpm"
+  skip_cleanup: true
   on:
     repo: graylog-labs/graylog-plugin-filter-messagesize
+    tags: true
+    jdk: oraclejdk8
