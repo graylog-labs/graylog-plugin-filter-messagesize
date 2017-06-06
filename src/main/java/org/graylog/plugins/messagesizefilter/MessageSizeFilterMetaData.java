@@ -33,7 +33,7 @@ public class MessageSizeFilterMetaData implements PluginMetaData {
 
     @Override
     public Version getVersion() {
-        return Version.fromPluginProperties(getClass(), PLUGIN_PROPERTIES, "version", Version.from(0, 0, 1));
+        return Version.fromPluginProperties(getClass(), PLUGIN_PROPERTIES, "version", Version.from(0, 0, 2));
     }
 
     @Override
