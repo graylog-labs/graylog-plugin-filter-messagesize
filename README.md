@@ -1,8 +1,14 @@
-# MessageSizeFilter Plugin for Graylog
+# Message Size Filter Plugin for Graylog
 
 [![Build Status](https://travis-ci.org/graylog-labs/graylog-plugin-filter-messagesize.svg?branch=master)](https://travis-ci.org/graylog-labs/graylog-plugin-filter-messagesize)
 
-__Use this paragraph to enter a description of your plugin.__
+This plugin installs a new filter that prints out all messages that have an estimated size crossing a configured threshold during processing. Huge messages can lead to issues in Graylog or Elasticsearch and this plugin aims to help with identifying the source of these large messages.
+
+It will log any message that crosses the threshold like this:
+
+```
+2017-06-06 13:55:17,031 INFO : org.graylog.plugins.messagesizefilter.MessageSizeFilter - SIZE: [1520680 byte], SOURCE: [foo.example.org], INPUT: [5936f6fe277f695f099ff512], REMOTE ADDR: [/127.0.0.1]
+```
 
 **Required Graylog version:** 2.0 and later
 
@@ -16,33 +22,15 @@ and can be configured in your `graylog.conf` file.
 
 Restart `graylog-server` and you are done.
 
-Development
------------
-
-You can improve your development experience for the web interface part of your plugin
-dramatically by making use of hot reloading. To do this, do the following:
-
-* `git clone https://github.com/Graylog2/graylog2-server.git`
-* `cd graylog2-server/graylog2-web-interface`
-* `ln -s $YOURPLUGIN plugin/`
-* `npm install && npm start`
-
 Usage
 -----
 
-__Use this paragraph to document the usage of your plugin__
+The default size threshold is 1MB. You can change the threshold in your `graylog-server.conf` configuration file like this:
 
-
-Getting started
----------------
-
-This project is using Maven 3 and requires Java 8 or higher.
-
-* Clone this repository.
-* Run `mvn package` to build a JAR file.
-* Optional: Run `mvn jdeb:jdeb` and `mvn rpm:rpm` to create a DEB and RPM package respectively.
-* Copy generated JAR file in target directory to your Graylog plugin directory.
-* Restart the Graylog.
+```
+# Set large message thresshold to 2MB
+message_size_filter_threshold_bytes = 2000000
+```
 
 Plugin Release
 --------------
